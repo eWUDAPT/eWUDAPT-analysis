@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+'''
+description:    Analysis tools single model eWUDAPT
+license:        APACHE 2.0
+'''
+import argparse
+import os
+import sys
+import pkg_resources
+from eWUDAPT_analysis.analysis_single import analysis_single
+# institute
+# model 
+# version
+
+def cli_parser():
+    '''
+    parse command line arguments:
+    '''
+    cfile = pkg_resources.resource_filename('eWUDAPT_analysis',
+                                            'data_request.json')
+    parser = argparse.ArgumentParser(description='Analysis tools single model eWUDAPT')
+    parser.add_argument('--filename', type=str,
+               help='filename of filepath of netCDF file', required=True)
+    results = parser.parse_args()
+    return cfile, results
+
+
+if __name__ == "__main__":
+    cfile, results = cli_parser()
+    analysis_single(results, cfile)
+    import pdb; pdb.set_trace()

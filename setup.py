@@ -6,7 +6,7 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name = "eWUDAPT-analysis",
+    name = "eWUDAPT_analysis",
     version = "0.0.1",
     author = "Ronald van Haren, Gijs van den Oort",
     author_email = "r.vanharen@esciencecenter.nl, g.vandenoort@esciencecenter.nl",
@@ -14,8 +14,10 @@ setup(
     license = "Apache 2.0",
     keywords = "eWUDAPT model intercomparison",
     url = "https://github.com/eWUDAPT/eWUDAPT-analysis",
-    packages=['eWUDAPT-analysis'],
-    scripts=['eWUDAPT-analysis/scripts/ewudapt_single'],
+    packages=['eWUDAPT_analysis'],
+    scripts=['eWUDAPT_analysis/scripts/ewudapt-single'],
+    package_data={'eWUDAPT_analysis': ['data_request.json']},
+    include_package_data=True,
     long_description=read('README.md'),
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
