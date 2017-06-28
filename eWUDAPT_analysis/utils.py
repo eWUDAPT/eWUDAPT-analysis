@@ -18,8 +18,47 @@ def define_inst_mod_ver(filepath):
     'gabls_urban_scm_', '').replace('.nc', '').split('_')
   return institute, model, version
 
-def check_file_exists(filepath):
+def check_file_exists(filename, boolean=False):
   '''
-  check if file exists
+  check if file exists and is readable, else raise IOError
   '''
-  pass
+  try:
+      with open(filename) as file:
+          if boolean:
+            return True
+          else:
+            pass  # file exists and is readable, nothing else to do
+  except IOError as e:
+    if boolean:
+      return False
+    else:
+      # file does not exist OR no read permissions
+      raise # re-raise exception
+
+def create_directory(path):
+  '''
+  Create a directory if it does not exist yet
+  '''
+  import errno
+  try:
+    os.makedirs(path)
+  except OSError as e:
+    if e.errno != errno.EEXIST:  # directory already exists, no problem
+      raise # re-raise exception if a different error occured
+
+def get_variable_information(ncdf_definition, varname):
+  '''
+  retrieve variable information from loaded json dictionary
+  '''
+  varinfo = next(item for item in ncdf_definition['variables']
+                 if item['name'] == varname)
+  return varinfo
+
+def get_dimension_information(ncdf_definition, dimname):
+  '''
+  retrieve dimension information from loaded json dictionary
+  '''
+  diminfo = next(item for item in ncdf_definition['dimensions']
+                 if item['name'] == dimname)
+  return diminfo
+

@@ -22,6 +22,9 @@ def cli_parser():
     parser = argparse.ArgumentParser(description='Analysis tools single model eWUDAPT')
     parser.add_argument('--filename', type=str,
                help='filename of filepath of netCDF file', required=True)
+    parser.add_argument('-o', '--outputdir',
+                        help='output directory figures',
+                        default=os.getcwd(), required=False)
     results = parser.parse_args()
     return cfile, results
 
@@ -29,4 +32,4 @@ def cli_parser():
 if __name__ == "__main__":
     cfile, results = cli_parser()
     analysis_single(results, cfile)
-    import pdb; pdb.set_trace()
+
