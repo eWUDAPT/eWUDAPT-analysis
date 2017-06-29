@@ -5,7 +5,6 @@ import datetime
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-
 class analysis_multiple:
   def __init__(self, args, json):
     self.outputdir = args.outputdir
@@ -42,54 +41,59 @@ class analysis_multiple:
     '''
     create time series plots'
     '''
-    outputfig = (str(self.usecase) + '_' + str(self.stage) + '_' +
+    outputfig = ('usecase' + str(self.usecase).zfill(2) + '_stage' + str(self.stage) + '_' +
                   variable["name"] + '.png')
     outputfile = os.path.join(self.outputdir, outputfig)
-    for filename in self.filenames:
-      try:
-        ncfile = Dataset(filename, 'r')
-        time = ncfile.variables['time']
+    try:
+      for ii, filename in enumerate(self.filenames):
         try:
-          dt = [num2date(step, units=time.units, calendar=time.calendar)
-                for step in time[:]]
-        except AttributeError:
-          # fallback
-          dt = [num2date(step, units='seconds since 2006-07-01 12:00:00',
-                         calendar='gregorian') for step in time[:]]
-        if (len(variable['dimensions'])==1):
-          # plot time series, 1D variable
-          val = ncfile.variables[variable['name']][:]
-        elif (len(variable['dimensions'])==2):
-          # plot first level, 2D variable
-          # TODO: add info to title on level
-          val = ncfile.variables[variable['name']][:]
-          if (len(np.shape(val)) == len(variable['dimensions'])):
-            if np.shape(val)[0] == np.shape(time)[0]:
-              val = val[:,0]
-            elif np.shape(val)[1] == np.shape(time)[0]:
-              val = val[0,:]
-            else: 
-              pass
+          ncfile = Dataset(filename, 'r')
+          time = ncfile.variables['time']
+          try:
+            dt = [num2date(step, units=time.units, calendar=time.calendar)
+                  for step in time[:]]
+          except AttributeError:
+            # fallback
+            dt = [num2date(step, units='seconds since 2006-07-01 12:00:00',
+                           calendar='gregorian') for step in time[:]]
+          if (len(variable['dimensions'])==1):
+            # plot time series, 1D variable
+            val = ncfile.variables[variable['name']][:]
+          elif (len(variable['dimensions'])==2):
+            # plot first level, 2D variable
+            val = ncfile.variables[variable['name']][:]
+            if (len(np.shape(val)) == len(variable['dimensions'])):
+              if np.shape(val)[0] == np.shape(time)[0]:
+                val = val[:,0]
+              elif np.shape(val)[1] == np.shape(time)[0]:
+                val = val[0,:]
+              else: 
+                pass
+            else:
+              return
           else:
-            return
-        else:
-          raise Exception('Variable ' + variable['name'] +
-                          'contains more than two dimensions')
-        # create the plot
-        plt.plot(dt, val)
-        # close netCDF file
-        ncfile.close()
-      except KeyError:
-        ncfile.close()
-    # configure plot/add labels
-    # TODO: add legend
-    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%Y %H:%M'))
-    plt.gca().xaxis.set_major_locator(mdates.HourLocator(byhour=range(0,24,3)))
-    plt.gcf().autofmt_xdate()
-    plt.xlabel('time')
-    plt.ylabel(variable["long_name"] + ' [' + variable["unit"] + ']')
-    plt.savefig(outputfile)
-    plt.close()
+            raise Exception('Variable ' + variable['name'] +
+                            'contains more than two dimensions')
+          # create the plot
+          fig = plt.figure(1)
+          ax = fig.add_subplot(111)
+          ax.plot(dt, val, label=(self.institute[ii] + ' ' + self.version[ii]))
+          # close netCDF file
+          ncfile.close()
+        except KeyError:
+          ncfile.close()
+      # configure plot/add labels
+      plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%Y %H:%M'))
+      plt.gca().xaxis.set_major_locator(mdates.HourLocator(byhour=range(0,24,3)))
+      plt.gcf().autofmt_xdate()
+      plt.xlabel('time')
+      plt.ylabel(variable["long_name"] + ' [' + variable["unit"] + ']')
+      lgd = ax.legend(loc="upper left", bbox_to_anchor=(1,1))
+      plt.tight_layout()
+      plt.savefig(outputfile,  bbox_extra_artists=(lgd,), bbox_inches='tight')
+      plt.close()
+    except UnboundLocalError:
+      plt.close()
 
   def plot_vertical_profile(self, variable, dimname):
     '''
@@ -109,8 +113,9 @@ class analysis_multiple:
       dt_profiles = np.arange(dt[0], dt[-1],np.timedelta64(6,'h'),
                               dtype='datetime64').astype(datetime.datetime)
       ncfile.close()
-      for dt_profile in dt_profiles:
-        for filename in self.filenames:
+      f, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, sharex='col', sharey='row')
+      for ax, dt_profile in enumerate(dt_profiles):
+        for ii,filename in enumerate(self.filenames):
           ncfile = Dataset(filename, 'r')
           time = ncfile.variables['time']
           try:
@@ -150,30 +155,54 @@ class analysis_multiple:
           elif (dimname=='levs'):
             dimvar = 'zs'
           levels = ncfile.variables[dimvar]
-          levels_units = levels.units
-          levels_long_name = levels.long_name
           # create the plot
-          if dimvar != 'zs':
-            plt.plot(val, levels[idx, :])
-          else:
-            plt.plot(val, levels[:])        
-          diminfo = get_dimension_information(self.ncdf_definition, dimname)
+          timestrplot = dt_profile.strftime('%Y-%m-%d_%H:%M')
+          if ax==0:
+            if dimvar != 'zs':
+              ax1.plot(val, levels[idx, :], label=(self.institute[ii] + ' ' + self.version[ii]))
+              ax1.set_title(timestrplot)
+            else:
+              ax1.plot(val, levels[:], label=(self.institute[ii] + ' ' + self.version[ii]))
+              ax1.set_title(timestrplot)
+          elif ax==1:
+            if dimvar != 'zs':
+              ax2.plot(val, levels[idx, :], label=(self.institute[ii] + ' ' + self.version[ii]))
+              ax2.set_title(timestrplot)
+            else:
+              ax2.plot(val, levels[:], label=(self.institute[ii] + ' ' + self.version[ii]))
+              ax2.set_title(timestrplot)
+          elif ax==2:
+            if dimvar != 'zs':
+              ax3.plot(val, levels[idx, :], label=(self.institute[ii] + ' ' + self.version[ii]))
+              ax3.set_title(timestrplot)
+            else:
+              ax3.plot(val, levels[:], label=(self.institute[ii] + ' ' + self.version[ii]))
+              ax3.set_title(timestrplot)
+          elif ax==3:
+            if dimvar != 'zs':
+              ax4.plot(val, levels[idx, :], label=(self.institute[ii] + ' ' + self.version[ii]))
+              ax4.set_title(timestrplot)
+            else:
+              ax4.plot(val, levels[:], label=(self.institute[ii] + ' ' + self.version[ii]))
+              ax4.set_title(timestrplot)
+          diminfo = get_variable_information(self.ncdf_definition, dimvar)
           # close netCDF file
           ncfile.close()
         timestr = dt_profile.strftime('%Y-%m-%d %H:%M')
-        timestrplot = dt_profile.strftime('%Y-%m-%d_%H:%M')
-        outputfig = (str(self.usecase) + '_' + str(self.stage) + '_' +
-                      variable["name"] + timestrplot + '.png')
+        outputfig = ('usecase' + str(self.usecase).zfill(2) + '_' + 'stage' + str(self.stage) + '_' +
+                      variable["name"] + '.png')
         outputfile = os.path.join(self.outputdir, outputfig)
-        try:
-          # configure plot/add labels
-          # TODO: add legend
-          plt.title(variable['long_name'] + ' at ' + timestr)
-          plt.xlabel(variable["long_name"] + ' [' + variable["unit"] + ']')
-          plt.ylabel(levels_long_name + ' [' + levels_units + ']')
-          plt.savefig(outputfile)
-          plt.close()
-        except UnboundLocalError:
-          plt.close()
+      try:
+        # configure plot/add labels
+        # Set common labels
+        xlab = f.text(0.5, -0.04, (variable['long_name'] + ' [' + variable['unit'] + ']'), ha='center', va='center')
+        ylab = f.text(0.0, 0.65, (diminfo['long_name'] + ' [' + diminfo['unit'] + ']'), rotation='vertical')
+        #f.legend('lower right')
+        lgd = ax2.legend(loc="upper left", bbox_to_anchor=(1,1))
+        plt.tight_layout()
+        plt.savefig(outputfile,  bbox_extra_artists=(lgd,xlab, ylab), bbox_inches='tight')
+        plt.close()
+      except UnboundLocalError:
+        plt.close()
     except KeyError:
       return

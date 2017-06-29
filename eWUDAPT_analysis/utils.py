@@ -45,7 +45,7 @@ def get_inst_mod_ver(filepath):
   filename = os.path.basename(filepath)
   inst, mod, ver = filename.replace(
     'gabls_urban_scm_', '').replace('.nc', '').split('_')
-  return inst, mod, ver
+  return [inst], [mod], [ver]
 
 def check_file_exists(filename, boolean=False):
   '''
