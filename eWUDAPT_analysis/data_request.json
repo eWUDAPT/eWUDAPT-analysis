@@ -1,427 +1,427 @@
 {
     "dimensions": [
         {
-            "long_name": "output times", 
+            "long_name": "output times",
             "name": "time"
-        }, 
+        },
         {
-            "long_name": "full levels", 
+            "long_name": "full levels",
             "name": "levf"
-        }, 
+        },
         {
-            "long_name": "half levels", 
+            "long_name": "half levels",
             "name": "levh"
-        }, 
+        },
         {
-            "long_name": "soil levels", 
+            "long_name": "soil levels",
             "name": "levs"
         }
-    ], 
+    ],
     "variables": [
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levf"
-            ], 
-            "long_name": "full level height", 
-            "name": "zf", 
+            ],
+            "long_name": "full level height",
+            "name": "zf",
             "unit": "m"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "half level height", 
-            "name": "zh", 
+            ],
+            "long_name": "half level height",
+            "name": "zh",
             "unit": "m"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "output time", 
-            "name": "time", 
+            ],
+            "long_name": "output time",
+            "name": "time",
             "unit": "seconds since 2006-07-01 12:00:00"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "long wave downward radiation at surface", 
-            "name": "ldw", 
+            ],
+            "long_name": "long wave downward radiation at surface",
+            "name": "ldw",
             "unit": "W m-2"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "long wave upward radiation at surface", 
-            "name": "lup", 
+            ],
+            "long_name": "long wave upward radiation at surface",
+            "name": "lup",
             "unit": "W m-2"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "short wave downward radiation at surface", 
-            "name": "qdw", 
+            ],
+            "long_name": "short wave downward radiation at surface",
+            "name": "qdw",
             "unit": "W m-2"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "short wave upward radiation at surface", 
-            "name": "qup", 
+            ],
+            "long_name": "short wave upward radiation at surface",
+            "name": "qup",
             "unit": "W m-2"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "temperature skin layer", 
-            "name": "tsk", 
+            ],
+            "long_name": "temperature skin layer",
+            "name": "tsk",
             "unit": "K"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "soil heat flux", 
-            "name": "g", 
+            ],
+            "long_name": "soil heat flux",
+            "name": "g",
             "unit": "W m-2"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "surface sensible heat flux", 
-            "name": "shf", 
+            ],
+            "long_name": "surface sensible heat flux",
+            "name": "shf",
             "unit": "W m-2"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "surface latent heat flux", 
-            "name": "lhf", 
+            ],
+            "long_name": "surface latent heat flux",
+            "name": "lhf",
             "unit": "W m-2"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "antropogenic heat flux", 
-            "name": "qf", 
+            ],
+            "long_name": "antropogenic heat flux",
+            "name": "qf",
             "unit": "W m-2"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "friction velocity", 
-            "name": "ustar", 
+            ],
+            "long_name": "friction velocity",
+            "name": "ustar",
             "unit": "m s-1"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "boundary layer height", 
-            "name": "hpbl", 
+            ],
+            "long_name": "boundary layer height",
+            "name": "hpbl",
             "unit": "m"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "2m temperature", 
-            "name": "t2m", 
+            ],
+            "long_name": "2m temperature",
+            "name": "t2m",
             "unit": "K"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "2m specific humidity", 
-            "name": "q2m", 
+            ],
+            "long_name": "2m specific humidity",
+            "name": "q2m",
             "unit": "kg kg-1"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "10m eastward wind", 
-            "name": "u10m", 
+            ],
+            "long_name": "10m eastward wind",
+            "name": "u10m",
             "unit": "m s-1"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "10m northward wind", 
-            "name": "v10m", 
+            ],
+            "long_name": "10m northward wind",
+            "name": "v10m",
             "unit": "m s-1"
-        }, 
+        },
         {
             "dimensions": [
                 "time"
-            ], 
-            "long_name": "cloud cover fraction", 
-            "name": "cc", 
+            ],
+            "long_name": "cloud cover fraction",
+            "name": "cc",
             "unit": "1"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levf"
-            ], 
-            "long_name": "air pressure", 
-            "name": "pf", 
+            ],
+            "long_name": "air pressure",
+            "name": "pf",
             "unit": "Pa"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "air pressure", 
-            "name": "ph", 
+            ],
+            "long_name": "air pressure",
+            "name": "ph",
             "unit": "Pa"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "temperature", 
-            "name": "t", 
+            ],
+            "long_name": "temperature",
+            "name": "t",
             "unit": "K"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "potential temperature", 
-            "name": "th", 
+            ],
+            "long_name": "potential temperature",
+            "name": "th",
             "unit": "K"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "specific humidity", 
-            "name": "q", 
+            ],
+            "long_name": "specific humidity",
+            "name": "q",
             "unit": "kg kg-1"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "eastward wind", 
-            "name": "u", 
+            ],
+            "long_name": "eastward wind",
+            "name": "u",
             "unit": "m s-1"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "northward wind", 
-            "name": "v", 
+            ],
+            "long_name": "northward wind",
+            "name": "v",
             "unit": "m s-1"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levf"
-            ], 
-            "long_name": "eastward geostrophic wind", 
-            "name": "u", 
+            ],
+            "long_name": "eastward geostrophic wind",
+            "name": "ugeo",
             "unit": "m s-1"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levf"
-            ], 
-            "long_name": "northward geostrophic wind", 
-            "name": "v", 
+            ],
+            "long_name": "northward geostrophic wind",
+            "name": "vgeo", 
             "unit": "m s-1"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levf"
-            ], 
-            "long_name": "u-component of momentum advection", 
-            "name": "dudt_ls", 
+            ],
+            "long_name": "u-component of momentum advection",
+            "name": "dudt_ls",
             "unit": "m s-2"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levf"
-            ], 
-            "long_name": "v-component of momentum advection", 
-            "name": "dvdt_ls", 
+            ],
+            "long_name": "v-component of momentum advection",
+            "name": "dvdt_ls",
             "unit": "m s-2"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levf"
-            ], 
-            "long_name": "temperature advection", 
-            "name": "dtdt_ls", 
+            ],
+            "long_name": "temperature advection",
+            "name": "dtdt_ls",
             "unit": "K s-1"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levf"
-            ], 
-            "long_name": "moisture advection", 
-            "name": "dqdt_ls", 
+            ],
+            "long_name": "moisture advection",
+            "name": "dqdt_ls",
             "unit": "kg kg-1 s-1"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levf"
-            ], 
-            "long_name": "vertical velocity", 
-            "name": "w", 
+            ],
+            "long_name": "vertical velocity",
+            "name": "w",
             "unit": "m s-1"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "vertical temperature flux", 
-            "name": "wt", 
+            ],
+            "long_name": "vertical temperature flux",
+            "name": "wt",
             "unit": "K m s-1"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "vertical moisture flux", 
-            "name": "wq", 
+            ],
+            "long_name": "vertical moisture flux",
+            "name": "wq",
             "unit": "kg m kg -1 s-1"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "vertical flux u-component momentum", 
-            "name": "uw", 
+            ],
+            "long_name": "vertical flux u-component momentum",
+            "name": "uw",
             "unit": "m2 s-2"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "vertical flux v-component momentum", 
-            "name": "vw", 
+            ],
+            "long_name": "vertical flux v-component momentum",
+            "name": "vw",
             "unit": "m2 s-2"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "eddy diffusivity momentum", 
-            "name": "Km", 
+            ],
+            "long_name": "eddy diffusivity momentum",
+            "name": "Km",
             "unit": "m2 s-1"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "eddy diffusivity heat", 
-            "name": "Kh", 
+            ],
+            "long_name": "eddy diffusivity heat",
+            "name": "Kh",
             "unit": "m2 s-1"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "turbulent kinetic energy", 
-            "name": "tke", 
+            ],
+            "long_name": "turbulent kinetic energy",
+            "name": "tke",
             "unit": "m2 s-2"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "shear production", 
-            "name": "shear", 
+            ],
+            "long_name": "shear production",
+            "name": "shear",
             "unit": "m2 s-3"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "buoyancy production", 
-            "name": "buoy", 
+            ],
+            "long_name": "buoyancy production",
+            "name": "buoy",
             "unit": "m2 s-3"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "total transport", 
-            "name": "trans", 
+            ],
+            "long_name": "total transport",
+            "name": "trans",
             "unit": "m2 s-3"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levh"
-            ], 
-            "long_name": "dissipation", 
-            "name": "dissi", 
+            ],
+            "long_name": "dissipation",
+            "name": "dissi",
             "unit": "m2 s-3"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levs"
-            ], 
-            "long_name": "soil level height", 
-            "name": "zs", 
+            ],
+            "long_name": "soil level height",
+            "name": "zs",
             "unit": "m"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levs"
-            ], 
-            "long_name": "soil temperature", 
-            "name": "ts", 
+            ],
+            "long_name": "soil temperature",
+            "name": "ts",
             "unit": "K"
-        }, 
+        },
         {
             "dimensions": [
-                "time", 
+                "time",
                 "levs"
-            ], 
-            "long_name": "soil water content", 
-            "name": "ths", 
+            ],
+            "long_name": "soil water content",
+            "name": "ths",
             "unit": "m3 m-3"
         }
     ]

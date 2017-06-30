@@ -50,7 +50,6 @@ def parse_grid(filename):
     for dim in result:
         dimname = dim["name"]
         dim["nvals"] = numdata[dims.index(dimname)] if dimname in dims else 0
-    print result
     return result
 
 
@@ -123,11 +122,11 @@ def write_nc(filename,variables,dimensions):
         ncvar = root.createVariable(v["name"],"f8",dims)
         ncvar.units = v["unit"]
         ncvar.long_name = v["long_name"]
-        print ncvar.shape
+        ncvar.fill_value = fill_value
+        ncvar.missing_value = missval
         if(len(dims) == 1):
             ncvar[:] = v["values"][:]
         elif(len(dims) == 2):
-            print "vals:",v["values"]
             ncvar[:,:] = v["values"][:,:]
     root.close()
 
